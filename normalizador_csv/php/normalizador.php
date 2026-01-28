@@ -1,14 +1,30 @@
 <?php
-$caminho = $_FILES["arquivo"]["tmp_name"];
-$caminho = str_replace('\\', '/', $caminho);
+//$caminho = $_FILES["arquivo"]["tmp_name"];
+//$caminho = str_replace('\\', '/', $caminho);
 
-//? $$$$$$$$$$$$$$
-//? $ PROTECTION $
-//? $$$$$$$$$$$$$$
+//* ======================
+//* = CONECTION TO MYSQL =
+//* ======================
 
-// $usr_psswd = [
-//     ':usr' => $_POST['text_username'],
-//     ':psswd' => $_POST['text_password']
-// ];
+use sys4soft\Database;
 
-// $comando = $ligacao->prepare("SELECT * FROM usuarios WHERE username = :usr AND password = :psswd");
+define('MYSQL_CONFIG', [
+    'host' => 'localhost',
+    'database' => 'udemy_loja_online',
+    'username' => 'root',
+    'password' => '',
+    'charset' => 'utf8mb4'
+]);
+
+require_once('database.php');
+
+$db = new Database(MYSQL_CONFIG);
+
+//! =====================
+//! = SEND CSV TO MYSQL =
+//! =====================
+
+//$cabecalho = fgetcsv($caminho, null, ';');
+
+$clientes = $db->execute_query("SELECT DISTINCT cidade FROM clientes;");
+print_r($clientes);

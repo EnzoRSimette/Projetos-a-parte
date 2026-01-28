@@ -27,6 +27,7 @@ class Database
         $this->_database = $cfg_options['database'];
         $this->_username = $cfg_options['username'];
         $this->_password = $cfg_options['password'];
+        $this->_charset = $cfg_options['charset'];
 
         // SET THE RETURN TYPE
         if (!empty($return_type) && $return_type == 'object') { // VERIFY IF THE RETURN IS A OBJECT
@@ -57,7 +58,7 @@ class Database
             'mysql:host=' . $this->_host . ';dbname=' . $this->_database . ';charset=' . $this->_charset,
             $this->_username,
             $this->_password,
-            array(PDO::ATTR_PERSISTENT => true)
+            [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::MYSQL_ATTR_LOCAL_INFILE => true]
         );
 
         // INIT TRANSACTION
@@ -96,7 +97,7 @@ class Database
             'mysql:host=' . $this->_host . ';dbname=' . $this->_database . ';charset=' . $this->_charset,
             $this->_username,
             $this->_password,
-            array(PDO::ATTR_PERSISTENT => true)
+            [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::MYSQL_ATTR_LOCAL_INFILE => true]
         );
 
         $results = null;
