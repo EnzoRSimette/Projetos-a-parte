@@ -1,9 +1,9 @@
 // Nota adicional: Futuramente, com tempo, adicionar um loop for para cada arquivo uplodado, isso vai fazer resetar a cada arquivo e dai a pessoa não precisa resetar a página
-const upload = document.querySelector(".espaco");
-const imagem = upload.querySelector(".imagem");
+const espaco = document.querySelector("#espaco");
+const espaco_maior = document.querySelector("#espaco_maior")
+const imagem = document.querySelector("#imagem");
 const input_arquivo = document.querySelector("#input_arquivo");
 const arquivo_importado1 = document.querySelector("#arquivo_importado1");
-const inputinvisivel = document.querySelector("#arquivo");
 
 function abrirseletor() {
     input_arquivo.click();
@@ -50,24 +50,23 @@ function handleInput(event) {
 
 function aoarrastarsobre(event) {
     event.preventDefault();
-    console.log("O arquivo está pairando sobre a div");
 }
 
-upload.addEventListener("dragover", (event) => {
+espaco_maior.addEventListener("dragover", (event) => {
     event.preventDefault();
     imagem.classList.add("dragging");
 });
 
-upload.addEventListener("dragleave", () => {
+espaco_maior.addEventListener("dragleave", () => {
     imagem.classList.remove("dragging");
 });
 
-upload.addEventListener("drop", (event) => {
+espaco_maior.addEventListener("drop", (event) => {
     event.preventDefault();
     imagem.classList.remove("dragging");
 });
 
-upload.addEventListener("click", abrirseletor);
+espaco.addEventListener("click", abrirseletor);
 input_arquivo.addEventListener("change", handleInput);
-upload.addEventListener("dragover", aoarrastarsobre);
-upload.addEventListener("drop", handleDrop);
+espaco_maior.addEventListener("dragover", aoarrastarsobre);
+espaco_maior.addEventListener("drop", handleDrop);

@@ -1,0 +1,22 @@
+#espaco {
+    /* width: 370px;
+    height: 100px; */
+    cursor: pointer;
+}
+
+#espaco * {
+    pointer-events: none;
+}
+
+#imagem {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: rotate(0deg);
+}
+
+#imagem.dragging {
+    transform: rotate(180deg);
+}
+
+#espaco_maior:hover #imagem {
+    transform: rotate(180deg) scale(1);
+}
